@@ -67,3 +67,10 @@ cards;
  Wolverhampton    1485  81    
 *York             1378  71    
 ;
+
+
+
+proc print data=bodyfat;
+run;
+proc corr data=bodyfat;
+run;

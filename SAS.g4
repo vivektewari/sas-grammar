@@ -1,4 +1,7 @@
+
 grammar SAS;
+import CommonLexerRules; //DataStmt,C, CommonParserRules
+
 
 @header {
 	package org.opensas01.antlr4;
@@ -34,19 +37,28 @@ data_stmt_block
 // here goes all supported data statements, either executive or declarative 
 data_stmt_list
  : infile_stmt
+   actual_dataLines
  | input_stmt
  ;
 
 // TODO: incomplete
 infile_stmt
  : INFILE file_specification infile_options* ';'
- ;
-
+ | file_specification
+;
 file_specification
  : STRINGLITERAL  //filename
  | CARDS 
- | DATALINES 
+ | DATALINES ';'
  ;
+
+actual_dataLines
+: (INT )+ ';'
+
+;
+ //actual_dataLines
+ //:  actual_dataLine (NEW_LINE actual_dataLine)*  NEW_LINE ';'
+ //;
 
 infile_options
  : DELIMITER '=' STRINGLITERAL 
@@ -56,6 +68,7 @@ infile_options
 
 input_stmt
  : INPUT (STRINGLITERAL '$')+ ';' 
+ | INPUT spaced_identifiers  ';'
  ;
 
 
@@ -108,29 +121,38 @@ var_stmt
 title_stmt
  : STRINGLITERAL ';'
  ;
+DATA : 'data' ;
+INPUT: 'input' ;
+DATALINES : 'datalines' ;
+RUN: 'run' ;
 
-Identifier
- : [a-zA-Z_] [a-zA-Z_0-9]*
- ;
+//Identifier
+// : [a-zA-Z_] [a-zA-Z_0-9]*
+// ;
 
 INFILE: 'infile' ;
 NOTRAP: 'notrap' ;
-STRINGLITERAL : '"' (~["\r\n] | '""')* '"';
+//fix 1 commented this as this is coming from common lexer
+//STRINGLITERAL : '"' (~["\r\n] | '""')* '"';
+//SQSTR : '\'' (~['"] | DQSTR)* '\'';
+//DQSTR : '"'  (~['"] | SQSTR)* '"';
+//str : SQSTR | DQSTR;
+
 PROC : 'proc' ;
 ID_NULL : '_null_' ;
-DATA : 'data' ;
+
 FREQ : 'freq' ;
-RUN: 'run' ;
+
 MEANS : 'means' ;
 SUMSIZE : 'sumsize' ;
 CARDS : 'cards' ;
 CARDS4 : 'cards4' ;
-DATALINES : 'datalines' ; 
+
 DATALINES4 : 'datalines4' ;
 DELIMITER : 'delim' | 'delimiter' ;
 FIRSTOBS : 'firstobs' ;
 OBS: 'obs' ;
-INPUT: 'input' ;
+
 INT: DIGIT+ ;
 DIGIT: [0-9] ;
 SK_MIN : 'MIN' ;
@@ -139,6 +161,7 @@ SK_MEAN : 'MEAN' ;
 SK_N : 'N' ;
 SK_SUM : 'SUM' ;
 SK_VAR : 'VAR' ;
+// NEW_LINE : '\n' ;
 WS: [ \n\t\r]+ -> skip;
 
 //end

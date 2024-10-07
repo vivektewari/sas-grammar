@@ -1,5 +1,5 @@
 data bodyfat;
-   Input age pctfat;
+   input age pctfat;
 datalines;
 23	28
 39	31
@@ -16,7 +16,4 @@ datalines;
 60	41
 61	34
 ;
-proc print data=bodyfat;
-run;
-proc corr data=bodyfat;
 run;

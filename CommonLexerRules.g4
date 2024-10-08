@@ -188,6 +188,7 @@ Tk_NULL : '_' N U L L '_';
 EXECUTE: E X E C U T E;
 DESCRIBE: D E S C R I B E;
 LIBNAME : L I B N A M E ;
+OUTPUT :  O U T P U T ;
 // TODO: make it case insensitive
 // abort
 
@@ -289,11 +290,13 @@ STRINGLITERAL
     |   '\'' ( ESC | ~[\\'] )* '\''
     ;
 fragment ESC :   '\\' [abtnfrv"'\\]    ;
+
 INT : [0-9]+ ;
 FloatingPointLiteral
  : [0-9]* ('.') [0-9]+ ([eE][-+]?[0-9]+)?
  | INT '.'
  ;
+
  //fix 1 commenting below as it is avaible in common
 //Identifier  : [a-zA-Z_] [a-zA-Z_0-9]*  ;
 

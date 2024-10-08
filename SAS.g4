@@ -1,6 +1,6 @@
 
 grammar SAS;
-import CommonLexerRules; //DataStmt,C, CommonParserRules
+import CommonLexerRules,DataStep, CommonParserRules,OutsideStepStmt,ProcStmt; //DataStmt,C, CommonParserRules
 
 
 @header {
@@ -23,16 +23,17 @@ parse
 
 // a statement block is either data statement, procedure block or new lines
 sas_stmt_block
- : data_stmt_block
- | proc_stmt_block_list 
+ : data_step_block
+ | proc_stmt_block
+ | libnameStatement
  ;
 
 // must treat NEWLINE by hand, since raw data often delimited by newline
-data_stmt_block
- : DATA ( ID_NULL | Identifier ) ';'
-   data_stmt_list*
-   RUN ';'
- ;
+//data_stmt_block
+// : DATA ( ID_NULL | Identifier ) ';'
+//   data_stmt_list*
+//   RUN ';'
+// ;
 
 // here goes all supported data statements, either executive or declarative 
 data_stmt_list
@@ -66,10 +67,10 @@ infile_options
  | OBS '=' INT
  ; 
 
-input_stmt
- : INPUT (STRINGLITERAL '$')+ ';' 
- | INPUT spaced_identifiers  ';'
- ;
+//input_stmt
+// : INPUT (STRINGLITERAL '$')+ ';'
+// | INPUT spaced_identifiers  ';'
+// ;
 
 
 // Specify SAS procedures one by one, because they do not have unify syntaxes

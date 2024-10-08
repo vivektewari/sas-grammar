@@ -20,6 +20,7 @@ expression
  | expression (EQC | NEC | GTC | LTC | GEC | LEC ) expression
  | expression (IN | INC) in_var_list
  | expression (AND | OR ) expression
+ | <assoc=right> expression '=' expression
  ;
 expressionList 
  : (expression | of_var_list) (',' (expression|of_var_list))*

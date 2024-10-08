@@ -1,5 +1,5 @@
 grammar FreeSAS;
-import CommonGrammar, AbortStmt, ProcStmt, ArrayStmt, AssignmentStmt, 
+import CommonGrammar, AbortStmt, ProcStmt, ArrayStmt, Stmt,
 	ByStmt, CallStmt, DataStmt, DatalinesStmt, DropStmt, InfileStmt, InputStmt, MeansProc,
 	RunStmt;
 

@@ -2,7 +2,7 @@ grammar InputStmt;
 import CommonGrammar ;
 
 input_main
- : (input_stmt | put_stmt)* EOF
+ : (input_stmt | put_stmt)
  ;
 input_stmt
  : INPUT input_specification* INPUT_ODS? (AT | AT AT)? ';'

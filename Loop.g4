@@ -1,5 +1,5 @@
 grammar Loop;
-import Stmt,CommonGrammar,Stmt;
+import Stmt,CommonGrammar;
 // Entry point for a DO loop
 doLoop : DO loopVariable EQUAL startValue TO endValue (BY incrementValue)? ';' (statement)+ END ';';
 
@@ -18,7 +18,7 @@ incrementValue: INT;
 statement     : doLoop
               | putStatement
               | assign_stmt
-              | ifStatement
+              | if_stmt
               ;
                // Allow nesting of DO loops
 

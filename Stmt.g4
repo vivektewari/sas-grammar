@@ -1,5 +1,5 @@
 grammar Stmt;
-import CommonGrammar,InputStmt;
+import CommonGrammar,StmtInput;
 //assign_main
 // : (assign_stmt)* EOF
 // ;
@@ -7,7 +7,7 @@ import CommonGrammar,InputStmt;
 
 
 // Entry point for an IF statement
-ifStatement
+if_stmt
 :IF expr THEN statement (ELSE statement)? ';'
 | IF expr THEN OUTPUT ';'
 
@@ -32,7 +32,7 @@ arithmeticExpression
 // Statement
 statement    : assign_stmt
              | put_stmt
-             | ifStatement
+             | if_stmt
              | compoundStatement; // Support for nested ifs
 
 // Assignment Statement (simplified)
@@ -49,22 +49,7 @@ expr
 | arithmeticExpression
 | literal
 ;
-literal
- : INT
- | FloatingPointLiteral
- | STRINGLITERAL
- | DateLiteral
- | TimeLiteral
- | DateTimeLiteral
- | BitLiteral
- | NameLiteral
- | HexLiteral
 
- ;
-number :
-INT
-|FloatingPointLiteral
-;
-// Whitespace handling
-WS : [ \t\n\r]+ -> skip;
+
+
 

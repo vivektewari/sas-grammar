@@ -1,4 +1,4 @@
-grammar DatalinesStmt;
+grammar StmtDatalines;
 import CommonGrammar;
 datalines_main
  : (datalines_stmt | datalines4_stmt)* EOF

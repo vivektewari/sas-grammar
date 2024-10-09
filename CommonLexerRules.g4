@@ -1,36 +1,7 @@
 lexer grammar CommonLexerRules; // note "lexer grammar"
 
-// TODO: make it case insensitive
-// abort
 
-ABORT : 'abort' ;
-ABEND  : 'abend' ;
-CANCEL : 'cancel' ;
-FILE   : 'file' ;
-RETURN : 'return' ;
-NOLIST : 'nolist' ;
 
-//array
-ARRAY : 'array' ;
-ARRAY_NUMERIC_ELEMENTS : '_NUMERIC_' ;
-ARRAY_CHARACTER_ELEMENTS : '_CHARACTER_' ;
-ARRAY_ALL_ELEMENTS : '_ALL_' ; 
-
-// by
-BY : 'by' ;
-GROUPFORMAT : 'groupformat' ;
-NOTSORTED : 'notsorted' ;
-DESCENDING : 'descending' ;
-// call 
-CALL : 'call' ;
-// datalines
-DATALINES : 'datalines' ;
-CARDS : 'cards' ;
-LINES : 'lines' ;
-DATALINES4 : 'datalines4' ;
-CARDS4 : 'cards4' ;
-LINES4 : 'lines4' ;
-END_DATALINES4 : ';;;;' ;
 
 fragment A:('a'|'A');
 fragment B:('b'|'B');
@@ -61,7 +32,7 @@ fragment Z:('z'|'Z');
 // infile
 
 SUM : S U M ;
-INFILE : 'infile' ; 
+INFILE : I N F I L E ;
 DISK :  D I S K; 
 DUMMY :  D U M M Y ; 
 GTERM : G T E R M ;
@@ -88,6 +59,36 @@ SEMICOLON : ';' ;
 
 
 // reserved keywords
+
+ABORT : A B O R T;
+ABEND  : A B E N D;
+CANCEL : C A N C E L ;
+FILE   : F I L E ;
+RETURN : R E T U R N ;
+NOLIST : N O L I S T ;
+
+//array
+ARRAY : A R R A Y ;
+ARRAY_NUMERIC_ELEMENTS : '_' N U M E R I C '_' ;
+//TODO:  MAKE CASE INSENSITIVE
+ARRAY_CHARACTER_ELEMENTS : '_CHARACTER_' ;
+ARRAY_ALL_ELEMENTS : '_ALL_' ;
+
+// by
+BY : 'by' ;
+GROUPFORMAT : 'groupformat' ;
+NOTSORTED : 'notsorted' ;
+DESCENDING : 'descending' ;
+// call
+CALL : 'call' ;
+// datalines
+DATALINES : 'datalines' ;
+CARDS : 'cards' ;
+LINES : 'lines' ;
+DATALINES4 : 'datalines4' ;
+CARDS4 : 'cards4' ;
+LINES4 : 'lines4' ;
+END_DATALINES4 : ';;;;' ;
 
 END : E N D ;
 LENGTH : L E N G T H ;
@@ -189,7 +190,7 @@ EXECUTE: E X E C U T E;
 DESCRIBE: D E S C R I B E;
 LIBNAME : L I B N A M E ;
 OUTPUT :  O U T P U T ;
-// TODO: make it case insensitive
+
 // abort
 
 
@@ -334,6 +335,8 @@ RSqBracket : ']' ;
 
 WS  :   [ \r\t\u000C\n]+ -> skip    ;
 COMMENT    :   '/*' .*? '*/'    -> skip    ;
+LINE_COMMENT    :   '*' ~[\r\n]* -> channel(HIDDEN) ;
+
 
 
 

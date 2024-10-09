@@ -1,7 +1,7 @@
 grammar FreeSAS;
 import CommonGrammar, AbortStmt, ProcStmt, ArrayStmt, Stmt,
-	ByStmt, CallStmt, DataStmt, DatalinesStmt, DropStmt, InfileStmt, InputStmt, MeansProc,
-	RunStmt;
+	ByStmt, CallStmt, StmtDataSet, StmtDatalines, DropStmt, InfileStmt, StmtInput, MeansProc,
+	RunStmt,Loop;
 
 parse
  : (sas_stmt_list)* EOF
@@ -18,7 +18,6 @@ sas_stmt_list
  | drop_stmt
  | data_stmt
  | if_stmt
- | if_then_else_stmt
  | infile_stmt
  | input_stmt
  | put_stmt
@@ -27,14 +26,15 @@ sas_stmt_list
  // assign must go last
  | assign_stmt
  | run_stmt
+ |doLoop
  ;
  
-if_stmt 
- : IF expression ';'
- ;
-
-if_then_else_stmt
- : IF expression THEN sas_stmt_list (ELSE sas_stmt_list)? 
- ;
+//if_stmt
+// : IF expression ';'
+// ;
+//
+//if_then_else_stmt
+// : IF expression THEN sas_stmt_list (ELSE sas_stmt_list)?
+// ;
  
 delete_stmt : DELETE ';' ;

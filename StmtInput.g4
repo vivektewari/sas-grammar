@@ -1,4 +1,4 @@
-grammar InputStmt;
+grammar StmtInput;
 import CommonGrammar ;
 
 input_main
